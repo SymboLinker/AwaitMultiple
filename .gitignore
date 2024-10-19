@@ -3,5 +3,5 @@
 ################################################################################
 
 /.vs
-/AwaitMultiple.Tests/bin
-/AwaitMultiple.Tests/obj
+bin
+obj

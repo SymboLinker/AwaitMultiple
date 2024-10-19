@@ -21,9 +21,9 @@ public class AwaitMultipleTests
         var (output1, output2, output3, output4, output5) = await tasks(
             Delay100AndReturn<int>(input1),
             Delay100AndReturn(input2),
-            (Task<string>)Delay100AndReturn(input3),
+            Delay100AndReturn(input3),
             Delay100AndReturn(input4),
-            (Task<object>)Delay100AndReturn(input5)
+            Delay100AndReturn(input5)
             );
 
         stopWatch.Stop();
