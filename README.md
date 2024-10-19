@@ -26,4 +26,4 @@ var employees = await dbConnection.GetAllAsync<Employee>();
 because the latter code is not executing the employee task until the books task has finished.
 
 
-Available via NuGet.
+Available via [NuGet](https://www.nuget.org/packages/AwaitMultiple).
