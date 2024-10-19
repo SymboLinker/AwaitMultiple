@@ -521,6 +521,78 @@ public class AwaitMultipleTests
         Assert.Equal(input16, output16);
     }
 
+    [Fact]
+    public async Task TestExceptionHandlingSingleError()
+    {
+        var stopWatch = new Stopwatch();
+        stopWatch.Start();
+
+        Exception? exception = null;
+        try
+        {
+            var (output1, output2) = await tasks(
+                Delay100AndReturn("uninteresting"),
+                FailingTaskAfterMilliseconds(2)
+            );
+        }
+        catch (Exception ex)
+        {
+            exception = ex;
+        }
+
+        stopWatch.Stop();
+
+        Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
+        Assert.NotNull(exception);
+        Assert.Equal("One or more errors occurred. (Hi there from the 2ms task.)", exception.Message);
+
+        var aggregateException = Assert.IsType<AggregateException>(exception);
+        var message = aggregateException.InnerExceptions.Select(x => x.Message).Single();
+        Assert.Equal("Hi there from the 2ms task.", message);
+    }
+
+    [Fact]
+    public async Task TestExceptionHandlingMultipleErrors()
+    {
+        var stopWatch = new Stopwatch();
+        stopWatch.Start();
+
+        Exception? exception = null;
+        try
+        {
+            var (output1, output2, output3) = await tasks(
+                FailingTaskAfterMilliseconds(100),
+                FailingTaskAfterMilliseconds(2),
+                FailingTaskAfterMilliseconds(105)
+            );
+        }
+        catch (Exception ex)
+        {
+            exception = ex;
+        }
+
+        stopWatch.Stop();
+
+        Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
+        Assert.NotNull(exception);
+        Assert.StartsWith("One or more errors occurred.", exception.Message);
+
+        var aggregateException = Assert.IsType<AggregateException>(exception);
+        var messages = aggregateException.InnerExceptions.Select(x => x.Message);
+        Assert.Contains("Hi there from the 2ms task.", messages);
+        Assert.Contains("Hi there from the 100ms task.", messages);
+        Assert.Contains("Hi there from the 105ms task.", messages);
+
+    }
+
+    public async Task<int> FailingTaskAfterMilliseconds(int milliseconds)
+    {
+        await Task.Delay(milliseconds);
+        throw new Exception($"Hi there from the {milliseconds}ms task.");
+    }
+
     public static async Task<T> Delay100AndReturn<T>(T value)
     {
         await Task.Delay(100);
