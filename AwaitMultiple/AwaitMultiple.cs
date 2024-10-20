@@ -153,7 +153,7 @@
             var whenAll = Task.WhenAll(tasks);
             try
             {
-                await whenAll;
+                await whenAll.ConfigureAwait(false);
             }
             catch (Exception ex)
             {
