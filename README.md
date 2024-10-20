@@ -31,7 +31,10 @@ because the latter code is not executing the employees-related task until the bo
 
 ## Exception handling
 
-If one or multiple tasks throw, then all errors are returned in a single `AggregateException`. Use the property `aggregateException.InnerExceptions` to find them. Because `AggregateException` inherits from `Exception`, you can of course catch it as a regular `Exception` as well.
+If one or multiple tasks throw, then
+- in case of a cancellation, a `TaskCanceledException` is thrown
+- otherwise, all errors are returned in a single `AggregateException`. Use the property `aggregateException.InnerExceptions` to find them.
+
 
 ## Get it
 

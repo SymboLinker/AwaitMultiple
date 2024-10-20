@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
 		<Description>Await multiple tasks in parallel and get their return values with concise code.</Description>
 		<PackageProjectUrl>https://github.com/Symbolinker/AwaitMultiple#readme</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Symbolinker/AwaitMultiple#readme</RepositoryUrl>
@@ -15,6 +15,7 @@
 		<PackageIcon>Circle.png</PackageIcon>
 		<PackageReleaseNotes>
 			v1.0.1: improve exception handling.
+			v1.0.2: improve handling cancellation exceptions and use `.ConfigureAwait(false)`.
 		</PackageReleaseNotes>
 	</PropertyGroup>
 
