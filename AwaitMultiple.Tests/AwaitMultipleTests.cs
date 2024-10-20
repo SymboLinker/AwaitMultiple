@@ -19,7 +19,7 @@ public class AwaitMultipleTests
         stopWatch.Start();
 
         var (output1, output2, output3, output4, output5) = await tasks(
-            Delay100AndReturn<int>(input1),
+            Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
             Delay100AndReturn(input4),
@@ -532,8 +532,7 @@ public class AwaitMultipleTests
         {
             var (output1, output2) = await tasks(
                 Delay100AndReturn("uninteresting"),
-                FailingTaskAfterMilliseconds(2)
-            );
+                FailingTaskAfterMilliseconds(2));
         }
         catch (Exception ex)
         {
@@ -564,8 +563,7 @@ public class AwaitMultipleTests
             var (output1, output2, output3) = await tasks(
                 FailingTaskAfterMilliseconds(100),
                 FailingTaskAfterMilliseconds(2),
-                FailingTaskAfterMilliseconds(105)
-            );
+                FailingTaskAfterMilliseconds(105));
         }
         catch (Exception ex)
         {
@@ -584,13 +582,74 @@ public class AwaitMultipleTests
         Assert.Contains("Hi there from the 2ms task.", messages);
         Assert.Contains("Hi there from the 100ms task.", messages);
         Assert.Contains("Hi there from the 105ms task.", messages);
-
     }
 
-    public async Task<int> FailingTaskAfterMilliseconds(int milliseconds)
+    [Fact]
+    public async Task TestCancelledExceptionHandling2()
+    {
+        var stopWatch = new Stopwatch();
+        stopWatch.Start();
+
+        Exception? exception = null;
+        try
+        {
+            var (output1, output2) = await tasks(
+                Delay100AndReturn("uninteresting"),
+                CancelAfterMilliseconds(150));
+        }
+        catch (Exception ex)
+        {
+            exception = ex;
+        }
+
+        stopWatch.Stop();
+
+        Assert.True(stopWatch.ElapsedMilliseconds < 190);
+
+        Assert.NotNull(exception);
+        Assert.Equal("A task was canceled.", exception.Message);
+        Assert.IsType<TaskCanceledException>(exception);
+    }
+
+    [Fact]
+    public async Task TestCancelledExceptionHandling1()
+    {
+        var stopWatch = new Stopwatch();
+        stopWatch.Start();
+
+        Exception? exception = null;
+        try
+        {
+            var (output1, output2) = await tasks(
+                Delay100AndReturn("uninteresting"),
+                CancelAfterMilliseconds(10));
+        }
+        catch (Exception ex)
+        {
+            exception = ex;
+        }
+
+        stopWatch.Stop();
+
+        Assert.True(stopWatch.ElapsedMilliseconds < 190);
+
+        Assert.NotNull(exception);
+        Assert.Equal("A task was canceled.", exception.Message);
+        Assert.IsType<TaskCanceledException>(exception);
+    }
+
+    public static async Task<int> FailingTaskAfterMilliseconds(int milliseconds)
     {
         await Task.Delay(milliseconds);
         throw new Exception($"Hi there from the {milliseconds}ms task.");
+    }
+
+    public static async Task<int> CancelAfterMilliseconds(int milliseconds)
+    {
+        var cancellationToken = new CancellationTokenSource();
+        cancellationToken.CancelAfter(milliseconds);
+        await Task.Delay(milliseconds + 30, cancellationToken.Token);
+        return 6789;
     }
 
     public static async Task<T> Delay100AndReturn<T>(T value)
