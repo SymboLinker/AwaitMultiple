@@ -7,7 +7,7 @@ Await multiple tasks in parallel and get their return values with concise code.
 
 AwaitMultiple can be used like this up to 16 arguments:
 ```cs
-var (value1, value2, value3) = await tasks(task1, task2, task3);
+var (value1, value2, value3) = await Tasks(task1, task2, task3);
 ```
 
 Add:
@@ -17,7 +17,7 @@ global using static AwaitMultiple.Await;
 
 Write
 ```cs
-var (books, employees) = await tasks(
+var (books, employees) = await Tasks(
    dbConnection.GetAllAsync<Books>(),
    dbConnection.GetAllAsync<Employees>());
 ```

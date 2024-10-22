@@ -2,14 +2,14 @@
 {
     public static class Await
     {
-        public static async Task<(T1, T2)> tasks<T1, T2>(Task<T1> task1, Task<T2> task2)
+        public static async Task<(T1, T2)> Tasks<T1, T2>(Task<T1> task1, Task<T2> task2)
         {
             await AggregateExceptions(task1, task2)
                 .ConfigureAwait(false);
             return (task1.Result, task2.Result);
         }
 
-        public static async Task<(T1, T2, T3)> tasks<T1, T2, T3>(
+        public static async Task<(T1, T2, T3)> Tasks<T1, T2, T3>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3)
         {
             await AggregateExceptions(task1, task2, task3)
@@ -17,7 +17,7 @@
             return (task1.Result, task2.Result, task3.Result);
         }
 
-        public static async Task<(T1, T2, T3, T4)> tasks<T1, T2, T3, T4>(
+        public static async Task<(T1, T2, T3, T4)> Tasks<T1, T2, T3, T4>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3, Task<T4> task4)
         {
             await AggregateExceptions(task1, task2, task3, task4)
@@ -26,7 +26,7 @@
 
         }
 
-        public static async Task<(T1, T2, T3, T4, T5)> tasks<T1, T2, T3, T4, T5>(
+        public static async Task<(T1, T2, T3, T4, T5)> Tasks<T1, T2, T3, T4, T5>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3, Task<T4> task4, Task<T5> task5)
         {
             await AggregateExceptions(task1, task2, task3, task4, task5)
@@ -35,7 +35,7 @@
 
         }
 
-        public static async Task<(T1, T2, T3, T4, T5, T6)> tasks<T1, T2, T3, T4, T5, T6>(
+        public static async Task<(T1, T2, T3, T4, T5, T6)> Tasks<T1, T2, T3, T4, T5, T6>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3, Task<T4> task4, Task<T5> task5, Task<T6> task6)
         {
             await AggregateExceptions(task1, task2, task3, task4, task5, task6)
@@ -43,7 +43,7 @@
             return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result);
         }
 
-        public static async Task<(T1, T2, T3, T4, T5, T6, T7)> tasks<T1, T2, T3, T4, T5, T6, T7>(
+        public static async Task<(T1, T2, T3, T4, T5, T6, T7)> Tasks<T1, T2, T3, T4, T5, T6, T7>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3, Task<T4> task4, Task<T5> task5, Task<T6> task6, Task<T7> task7)
         {
             await AggregateExceptions(task1, task2, task3, task4, task5, task6, task7)
@@ -51,7 +51,7 @@
             return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result, task7.Result);
         }
 
-        public static async Task<(T1, T2, T3, T4, T5, T6, T7, T8)> tasks<T1, T2, T3, T4, T5, T6, T7, T8>(
+        public static async Task<(T1, T2, T3, T4, T5, T6, T7, T8)> Tasks<T1, T2, T3, T4, T5, T6, T7, T8>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3, Task<T4> task4, Task<T5> task5, Task<T6> task6, Task<T7> task7, Task<T8> task8)
         {
             await AggregateExceptions(task1, task2, task3, task4, task5, task6, task7, task8)
@@ -59,7 +59,7 @@
             return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result, task7.Result, task8.Result);
         }
 
-        public static async Task<(T1, T2, T3, T4, T5, T6, T7, T8, T9)> tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
+        public static async Task<(T1, T2, T3, T4, T5, T6, T7, T8, T9)> Tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3, Task<T4> task4, Task<T5> task5, Task<T6> task6, Task<T7> task7, Task<T8> task8, Task<T9> task9)
         {
             await AggregateExceptions(task1, task2, task3, task4, task5, task6, task7, task8, task9)
@@ -68,7 +68,7 @@
         }
 
         public static async Task<(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10)>
-            tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
+            Tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3, Task<T4> task4, Task<T5> task5,
             Task<T6> task6, Task<T7> task7, Task<T8> task8, Task<T9> task9, Task<T10> task10)
         {
@@ -79,7 +79,7 @@
         }
 
         public static async Task<(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)>
-            tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
+            Tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3, Task<T4> task4, Task<T5> task5,
             Task<T6> task6, Task<T7> task7, Task<T8> task8, Task<T9> task9, Task<T10> task10,
             Task<T11> task11)
@@ -92,7 +92,7 @@
         }
 
         public static async Task<(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12)>
-            tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
+            Tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3, Task<T4> task4, Task<T5> task5,
             Task<T6> task6, Task<T7> task7, Task<T8> task8, Task<T9> task9, Task<T10> task10,
             Task<T11> task11, Task<T12> task12)
@@ -106,7 +106,7 @@
         }
 
         public static async Task<(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13)>
-            tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
+            Tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3, Task<T4> task4, Task<T5> task5,
             Task<T6> task6, Task<T7> task7, Task<T8> task8, Task<T9> task9, Task<T10> task10,
             Task<T11> task11, Task<T12> task12, Task<T13> task13)
@@ -120,7 +120,7 @@
         }
 
         public static async Task<(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14)>
-            tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
+            Tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3, Task<T4> task4, Task<T5> task5,
             Task<T6> task6, Task<T7> task7, Task<T8> task8, Task<T9> task9, Task<T10> task10,
             Task<T11> task11, Task<T12> task12, Task<T13> task13, Task<T14> task14)
@@ -134,7 +134,7 @@
         }
 
         public static async Task<(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15)>
-            tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
+            Tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3, Task<T4> task4, Task<T5> task5,
             Task<T6> task6, Task<T7> task7, Task<T8> task8, Task<T9> task9, Task<T10> task10,
             Task<T11> task11, Task<T12> task12, Task<T13> task13, Task<T14> task14, Task<T15> task15)
@@ -148,7 +148,7 @@
         }
 
         public static async Task<(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16)>
-            tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(
+            Tasks<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(
             Task<T1> task1, Task<T2> task2, Task<T3> task3, Task<T4> task4, Task<T5> task5,
             Task<T6> task6, Task<T7> task7, Task<T8> task8, Task<T9> task9, Task<T10> task10,
             Task<T11> task11, Task<T12> task12, Task<T13> task13, Task<T14> task14, Task<T15> task15,

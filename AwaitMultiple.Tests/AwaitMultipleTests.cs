@@ -18,7 +18,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3, output4, output5) = await tasks(
+        var (output1, output2, output3, output4, output5) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -59,7 +59,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2) = await tasks(
+        var (output1, output2) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2));
 
@@ -76,7 +76,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3) = await tasks(
+        var (output1, output2, output3) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3));
@@ -96,7 +96,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3, output4) = await tasks(
+        var (output1, output2, output3, output4) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -117,7 +117,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3, output4, output5) = await tasks(
+        var (output1, output2, output3, output4, output5) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -140,7 +140,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3, output4, output5, output6) = await tasks(
+        var (output1, output2, output3, output4, output5, output6) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -165,7 +165,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3, output4, output5, output6, output7) = await tasks(
+        var (output1, output2, output3, output4, output5, output6, output7) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -192,7 +192,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3, output4, output5, output6, output7, output8) = await tasks(
+        var (output1, output2, output3, output4, output5, output6, output7, output8) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -221,7 +221,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3, output4, output5, output6, output7, output8, output9) = await tasks(
+        var (output1, output2, output3, output4, output5, output6, output7, output8, output9) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -252,7 +252,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3, output4, output5, output6, output7, output8, output9, output10) = await tasks(
+        var (output1, output2, output3, output4, output5, output6, output7, output8, output9, output10) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -285,7 +285,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3, output4, output5, output6, output7, output8, output9, output10, output11) = await tasks(
+        var (output1, output2, output3, output4, output5, output6, output7, output8, output9, output10, output11) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -320,7 +320,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3, output4, output5, output6, output7, output8, output9, output10, output11, output12) = await tasks(
+        var (output1, output2, output3, output4, output5, output6, output7, output8, output9, output10, output11, output12) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -357,7 +357,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3, output4, output5, output6, output7, output8, output9, output10, output11, output12, output13) = await tasks(
+        var (output1, output2, output3, output4, output5, output6, output7, output8, output9, output10, output11, output12, output13) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -396,7 +396,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3, output4, output5, output6, output7, output8, output9, output10, output11, output12, output13, output14) = await tasks(
+        var (output1, output2, output3, output4, output5, output6, output7, output8, output9, output10, output11, output12, output13, output14) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -437,7 +437,7 @@ public class AwaitMultipleTests
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        var (output1, output2, output3, output4, output5, output6, output7, output8, output9, output10, output11, output12, output13, output14, output15) = await tasks(
+        var (output1, output2, output3, output4, output5, output6, output7, output8, output9, output10, output11, output12, output13, output14, output15) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -481,7 +481,7 @@ public class AwaitMultipleTests
         stopWatch.Start();
 
         var (output1, output2, output3, output4, output5, output6, output7, output8, output9, output10,
-            output11, output12, output13, output14, output15, output16) = await tasks(
+            output11, output12, output13, output14, output15, output16) = await Tasks(
             Delay100AndReturn(input1),
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
@@ -529,7 +529,7 @@ public class AwaitMultipleTests
         Exception? exception = null;
         try
         {
-            var (output1, output2) = await tasks(
+            var (output1, output2) = await Tasks(
                 Delay100AndReturn("uninteresting"),
                 FailingTaskAfterMilliseconds(2));
         }
@@ -559,7 +559,7 @@ public class AwaitMultipleTests
         Exception? exception = null;
         try
         {
-            var (output1, output2, output3) = await tasks(
+            var (output1, output2, output3) = await Tasks(
                 FailingTaskAfterMilliseconds(100),
                 FailingTaskAfterMilliseconds(2),
                 FailingTaskAfterMilliseconds(105));
@@ -592,7 +592,7 @@ public class AwaitMultipleTests
         Exception? exception = null;
         try
         {
-            var (output1, output2) = await tasks(
+            var (output1, output2) = await Tasks(
                 Delay100AndReturn("uninteresting"),
                 CancelAfterMilliseconds(150));
         }
@@ -619,7 +619,7 @@ public class AwaitMultipleTests
         Exception? exception = null;
         try
         {
-            var (output1, output2) = await tasks(
+            var (output1, output2) = await Tasks(
                 Delay100AndReturn("uninteresting"),
                 CancelAfterMilliseconds(10));
         }
