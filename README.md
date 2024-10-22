@@ -31,9 +31,13 @@ because the latter code is not executing the employees-related task until the bo
 
 ## Exception handling
 
-If one or multiple tasks throw, then
-- in case of a cancellation, a `TaskCanceledException` is thrown
-- otherwise, all errors are returned in a single `AggregateException`. Use the property `aggregateException.InnerExceptions` to find them.
+In case of a cancellation, a `TaskCanceledException` is thrown.
+
+Otherwise, all errors are returned in a single `AggregateException`. Its `Message` property is like:
+
+> One or more errors occurred. (First exception message.) (Second exception message.)
+
+Use the property `aggregateException.InnerExceptions` for more details like `StackTrace`s etc.
 
 
 ## Get it

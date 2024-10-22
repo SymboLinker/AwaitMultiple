@@ -23,8 +23,7 @@ public class AwaitMultipleTests
             Delay100AndReturn(input2),
             Delay100AndReturn(input3),
             Delay100AndReturn(input4),
-            Delay100AndReturn(input5)
-            );
+            Delay100AndReturn(input5));
 
         stopWatch.Stop();
 
@@ -575,7 +574,7 @@ public class AwaitMultipleTests
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
 
         Assert.NotNull(exception);
-        Assert.StartsWith("One or more errors occurred.", exception.Message);
+        Assert.Equal("""One or more errors occurred. (Hi there from the 2ms task.) (Hi there from the 100ms task.) (Hi there from the 105ms task.)""", exception.Message);
 
         var aggregateException = Assert.IsType<AggregateException>(exception);
         var messages = aggregateException.InnerExceptions.Select(x => x.Message);
