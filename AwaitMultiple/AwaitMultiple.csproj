@@ -18,7 +18,7 @@
 			v1.0.1: improve exception handling.
 			v1.0.2: improve handling cancellation exceptions and use `.ConfigureAwait(false)`.
 			v1.0.3: use `.ConfigureAwait(false)` on all `await`s.
-			v2.0.0: rename `await tasks(..)` to `await Tasks(..)` to allow using a `tasks` variable and the `Tasks` method in th same scope.
+			v2.0.0: rename `await tasks(..)` to `await Tasks(..)` to allow using a `tasks` variable and the `Tasks` method in the same scope.
 		</PackageReleaseNotes>
 	</PropertyGroup>
 
