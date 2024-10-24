@@ -7,7 +7,7 @@ public class AwaitMultipleTests
     const int _expectedTotalTime = 140;
 
     [Fact]
-    public async Task Test()
+    public async Task TestBasic()
     {
         var input1 = 4;
         var input2 = true;
@@ -35,6 +35,38 @@ public class AwaitMultipleTests
         Assert.Equal(input4, output4);
         Assert.Equal(input5, output5);
     }
+
+    [Fact]
+    public async Task TestBasicombinedWithTasksWithoutReturnValue()
+    {
+        var input1 = 4;
+        var input2 = true;
+        var input3 = "Hello";
+
+        var stopWatch = new Stopwatch();
+        stopWatch.Start();
+
+        var (output1, output2, output3) = await Tasks(
+            Delay100AndReturn(input1),
+            Delay100AndReturn(input2),
+            Delay100AndReturn(input3),
+            [
+                MyTaskWithoutReturnValue(),
+                Task.Delay(200),
+            ]);
+
+        stopWatch.Stop();
+
+        Assert.True(
+            199 < stopWatch.ElapsedMilliseconds
+                && stopWatch.ElapsedMilliseconds < 240);
+
+        Assert.Equal(input1, output1);
+        Assert.Equal(input2, output2);
+        Assert.Equal(input3, output3);
+    }
+
+    private Task MyTaskWithoutReturnValue() => Task.Delay(10);
 
     const int input1 = 1;
     const int input2 = 2;
@@ -560,7 +592,7 @@ public class AwaitMultipleTests
         try
         {
             var (output1, output2, output3) = await Tasks(
-                FailingTaskAfterMilliseconds(100),
+                FailingTaskAfterMilliseconds(80),
                 FailingTaskAfterMilliseconds(2),
                 FailingTaskAfterMilliseconds(105));
         }
@@ -574,12 +606,12 @@ public class AwaitMultipleTests
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
 
         Assert.NotNull(exception);
-        Assert.Equal("""One or more errors occurred. (Hi there from the 2ms task.) (Hi there from the 100ms task.) (Hi there from the 105ms task.)""", exception.Message);
+        Assert.Equal("""One or more errors occurred. (Hi there from the 2ms task.) (Hi there from the 80ms task.) (Hi there from the 105ms task.)""", exception.Message);
 
         var aggregateException = Assert.IsType<AggregateException>(exception);
         var messages = aggregateException.InnerExceptions.Select(x => x.Message);
         Assert.Contains("Hi there from the 2ms task.", messages);
-        Assert.Contains("Hi there from the 100ms task.", messages);
+        Assert.Contains("Hi there from the 80ms task.", messages);
         Assert.Contains("Hi there from the 105ms task.", messages);
     }
 
@@ -637,13 +669,383 @@ public class AwaitMultipleTests
         Assert.IsType<TaskCanceledException>(exception);
     }
 
-    public static async Task<int> FailingTaskAfterMilliseconds(int milliseconds)
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited00(int numberOfTasksWithoutReturnValue)
+    {
+        var stopWatch = new Stopwatch();
+        stopWatch.Start();
+
+        try
+        {
+            await Tasks(
+                Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue));
+        }
+        catch (AggregateException ex)
+        {
+            stopWatch.Stop();
+            Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
+            var messages = ex.InnerExceptions.Select(x => x.Message);
+            for (var i = 1; i <= numberOfTasksWithoutReturnValue; i++)
+            {
+                Assert.Contains($"Task without return value {i} has thrown.", messages);
+            }
+            return;
+        }
+
+        Assert.Fail();
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited01(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(1, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited02(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(2, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited03(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(3, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited04(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(4, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            ThrowWithTaskNumber(4),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited05(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(5, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            ThrowWithTaskNumber(4),
+            ThrowWithTaskNumber(5),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited06(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(6, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            ThrowWithTaskNumber(4),
+            ThrowWithTaskNumber(5),
+            ThrowWithTaskNumber(6),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited07(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(7, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            ThrowWithTaskNumber(4),
+            ThrowWithTaskNumber(5),
+            ThrowWithTaskNumber(6),
+            ThrowWithTaskNumber(7),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited08(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(8, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            ThrowWithTaskNumber(4),
+            ThrowWithTaskNumber(5),
+            ThrowWithTaskNumber(6),
+            ThrowWithTaskNumber(7),
+            ThrowWithTaskNumber(8),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited09(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(9, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            ThrowWithTaskNumber(4),
+            ThrowWithTaskNumber(5),
+            ThrowWithTaskNumber(6),
+            ThrowWithTaskNumber(7),
+            ThrowWithTaskNumber(8),
+            ThrowWithTaskNumber(9),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited10(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(10, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            ThrowWithTaskNumber(4),
+            ThrowWithTaskNumber(5),
+            ThrowWithTaskNumber(6),
+            ThrowWithTaskNumber(7),
+            ThrowWithTaskNumber(8),
+            ThrowWithTaskNumber(9),
+            ThrowWithTaskNumber(10),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited11(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(11, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            ThrowWithTaskNumber(4),
+            ThrowWithTaskNumber(5),
+            ThrowWithTaskNumber(6),
+            ThrowWithTaskNumber(7),
+            ThrowWithTaskNumber(8),
+            ThrowWithTaskNumber(9),
+            ThrowWithTaskNumber(10),
+            ThrowWithTaskNumber(11),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited12(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(12, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            ThrowWithTaskNumber(4),
+            ThrowWithTaskNumber(5),
+            ThrowWithTaskNumber(6),
+            ThrowWithTaskNumber(7),
+            ThrowWithTaskNumber(8),
+            ThrowWithTaskNumber(9),
+            ThrowWithTaskNumber(10),
+            ThrowWithTaskNumber(11),
+            ThrowWithTaskNumber(12),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited13(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(13, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            ThrowWithTaskNumber(4),
+            ThrowWithTaskNumber(5),
+            ThrowWithTaskNumber(6),
+            ThrowWithTaskNumber(7),
+            ThrowWithTaskNumber(8),
+            ThrowWithTaskNumber(9),
+            ThrowWithTaskNumber(10),
+            ThrowWithTaskNumber(11),
+            ThrowWithTaskNumber(12),
+            ThrowWithTaskNumber(13),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited14(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(14, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            ThrowWithTaskNumber(4),
+            ThrowWithTaskNumber(5),
+            ThrowWithTaskNumber(6),
+            ThrowWithTaskNumber(7),
+            ThrowWithTaskNumber(8),
+            ThrowWithTaskNumber(9),
+            ThrowWithTaskNumber(10),
+            ThrowWithTaskNumber(11),
+            ThrowWithTaskNumber(12),
+            ThrowWithTaskNumber(13),
+            ThrowWithTaskNumber(14),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited15(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(15, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            ThrowWithTaskNumber(4),
+            ThrowWithTaskNumber(5),
+            ThrowWithTaskNumber(6),
+            ThrowWithTaskNumber(7),
+            ThrowWithTaskNumber(8),
+            ThrowWithTaskNumber(9),
+            ThrowWithTaskNumber(10),
+            ThrowWithTaskNumber(11),
+            ThrowWithTaskNumber(12),
+            ThrowWithTaskNumber(13),
+            ThrowWithTaskNumber(14),
+            ThrowWithTaskNumber(15),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public static async Task TestAllAreAwaited16(int numberOfTasksWithoutReturnValue)
+    {
+        await TestAllAreAwaited(16, numberOfTasksWithoutReturnValue, () => Tasks(
+            ThrowWithTaskNumber(1),
+            ThrowWithTaskNumber(2),
+            ThrowWithTaskNumber(3),
+            ThrowWithTaskNumber(4),
+            ThrowWithTaskNumber(5),
+            ThrowWithTaskNumber(6),
+            ThrowWithTaskNumber(7),
+            ThrowWithTaskNumber(8),
+            ThrowWithTaskNumber(9),
+            ThrowWithTaskNumber(10),
+            ThrowWithTaskNumber(11),
+            ThrowWithTaskNumber(12),
+            ThrowWithTaskNumber(13),
+            ThrowWithTaskNumber(14),
+            ThrowWithTaskNumber(15),
+            ThrowWithTaskNumber(16),
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+        );
+    }
+
+    private static async Task TestAllAreAwaited(int withReturnValue, int withoutReturnValue, Func<Task> act)
+    {
+        var stopWatch = new Stopwatch();
+        stopWatch.Start();
+
+        try
+        {
+            await act();
+        }
+        catch (AggregateException ex)
+        {
+            stopWatch.Stop();
+            Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
+            var messages = ex.InnerExceptions.Select(x => x.Message);
+            for (var i = 1; i <= withReturnValue; i++)
+            {
+                Assert.Contains($"Task with return value {i} has thrown.", messages);
+            }
+            for (var i = 1; i <= withoutReturnValue; i++)
+            {
+                Assert.Contains($"Task without return value {i} has thrown.", messages);
+            }
+            return;
+        }
+
+        Assert.Fail();
+    }
+
+    private static async Task<int> FailingTaskAfterMilliseconds(int milliseconds)
     {
         await Task.Delay(milliseconds);
         throw new Exception($"Hi there from the {milliseconds}ms task.");
     }
 
-    public static async Task<int> CancelAfterMilliseconds(int milliseconds)
+    private static async Task<int> CancelAfterMilliseconds(int milliseconds)
     {
         var cancellationToken = new CancellationTokenSource();
         cancellationToken.CancelAfter(milliseconds);
@@ -651,9 +1053,21 @@ public class AwaitMultipleTests
         return 6789;
     }
 
-    public static async Task<T> Delay100AndReturn<T>(T value)
+    private static async Task<T> Delay100AndReturn<T>(T value)
     {
         await Task.Delay(100);
         return value;
+    }
+
+    private static async Task<int> ThrowWithTaskNumber(int i)
+    {
+        await Task.Delay(30);
+        throw new Exception($"Task with return value {i} has thrown.");
+    }
+
+    private static async Task ThrowWithTaskNumberWithoutReturnValue(int i)
+    {
+        await Task.Delay(30);
+        throw new Exception($"Task without return value {i} has thrown.");
     }
 }

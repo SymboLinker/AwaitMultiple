@@ -28,6 +28,33 @@ var employees = await dbConnection.GetAllAsync<Employee>();
 ```
 because the latter code is not executing the employees-related task until the books-related task has finished.
 
+## Additional option
+Await tasks with and without return value together:
+```cs
+var (books, employees) = await Tasks(
+   dbConnection.GetAllAsync<Books>(),
+   dbConnection.GetAllAsync<Employees>(),
+   [
+      dbConnection.InsertHistoryRecordAsync(),
+      // ... any number of tasks...
+   ]);
+```
+or
+```cs
+var books = await Tasks(
+   dbConnection.GetAllAsync<Books>(),
+   [
+      dbConnection.InsertHistoryRecordAsync(),
+      // ... any number of tasks...
+   ]);
+```
+or even (for code consistency):
+```cs
+await Tasks([
+   dbConnection.InsertHistoryRecordAsync(),
+   // ... any number of tasks...
+]);
+```
 
 ## Exception handling
 
