@@ -167,10 +167,4 @@ public static class Await
             throw whenAll.Exception ?? ex;
         }
     }
-
-    public static async Task<T> Then<T>(this Task task, T returnValue)
-    {
-        await task.ConfigureAwait(false);
-        return returnValue;
-    }
 }
