@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<Version>2.1.1</Version>
+		<Version>3.0.0</Version>
 		<Description>Await multiple tasks in parallel and get their return values with concise code.</Description>
 		<PackageProjectUrl>https://github.com/Symbolinker/AwaitMultiple#readme</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Symbolinker/AwaitMultiple#readme</RepositoryUrl>
@@ -21,6 +21,7 @@
 			v2.0.0: rename `await tasks(..)` to `await Tasks(..)` to allow using a `tasks` variable and the `Tasks` method in the same scope.
 			v2.1.0: [new feature] await tasks with and without return value together.
 			v2.1.1: delete unused method.
+			v3.0.0: add optional parameter `continueOnCapturedContext` (with default `true`).
 		</PackageReleaseNotes>
 	</PropertyGroup>
 

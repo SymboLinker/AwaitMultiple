@@ -67,6 +67,17 @@ Otherwise, all errors are returned in a single `AggregateException`. Its `Messag
 Use the property `aggregateException.InnerExceptions` for more details like `StackTrace`s etc.
 
 
+## Configuring the await
+
+Optionally, you can configure the await:
+```cs
+var (books, employees) = await Tasks(
+   dbConnection.GetAllAsync<Books>(),
+   dbConnection.GetAllAsync<Employees>(),
+   continueOnCapturedContext: false);
+```
+
+
 ## Get it
 
 Available via [NuGet](https://www.nuget.org/packages/AwaitMultiple).
