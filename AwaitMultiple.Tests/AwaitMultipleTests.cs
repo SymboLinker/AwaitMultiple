@@ -26,7 +26,6 @@ public class AwaitMultipleTests
             Delay100AndReturn(input5));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
 
         Assert.Equal(input1, output1);
@@ -37,7 +36,7 @@ public class AwaitMultipleTests
     }
 
     [Fact]
-    public async Task TestBasicombinedWithTasksWithoutReturnValue()
+    public async Task TestBasicCombiningWithAndWithoutReturnValue()
     {
         var input1 = 4;
         var input2 = true;
@@ -56,7 +55,6 @@ public class AwaitMultipleTests
             ]);
 
         stopWatch.Stop();
-
         Assert.True(
             199 < stopWatch.ElapsedMilliseconds
                 && stopWatch.ElapsedMilliseconds < 240);
@@ -86,7 +84,7 @@ public class AwaitMultipleTests
     const int input16 = 16;
 
     [Fact]
-    public async Task Test02()
+    public async Task TestReturnsCorrectValues02()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -96,14 +94,14 @@ public class AwaitMultipleTests
             Delay100AndReturn(input2));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
         Assert.Equal(input1, output1);
         Assert.Equal(input2, output2);
     }
 
     [Fact]
-    public async Task Test03()
+    public async Task TestReturnsCorrectValues03()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -114,16 +112,15 @@ public class AwaitMultipleTests
             Delay100AndReturn(input3));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
         Assert.Equal(input1, output1);
         Assert.Equal(input2, output2);
         Assert.Equal(input3, output3);
-
     }
 
     [Fact]
-    public async Task Test04()
+    public async Task TestReturnsCorrectValues04()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -144,7 +141,7 @@ public class AwaitMultipleTests
     }
 
     [Fact]
-    public async Task Test05()
+    public async Task TestReturnsCorrectValues05()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -167,7 +164,7 @@ public class AwaitMultipleTests
     }
 
     [Fact]
-    public async Task Test06()
+    public async Task TestReturnsCorrectValues06()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -181,8 +178,8 @@ public class AwaitMultipleTests
             Delay100AndReturn(input6));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
         Assert.Equal(input1, output1);
         Assert.Equal(input2, output2);
         Assert.Equal(input3, output3);
@@ -192,7 +189,7 @@ public class AwaitMultipleTests
     }
 
     [Fact]
-    public async Task Test07()
+    public async Task TestReturnsCorrectValues07()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -207,8 +204,8 @@ public class AwaitMultipleTests
             Delay100AndReturn(input7));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
         Assert.Equal(input1, output1);
         Assert.Equal(input2, output2);
         Assert.Equal(input3, output3);
@@ -219,7 +216,7 @@ public class AwaitMultipleTests
     }
 
     [Fact]
-    public async Task Test08()
+    public async Task TestReturnsCorrectValues08()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -235,8 +232,8 @@ public class AwaitMultipleTests
             Delay100AndReturn(input8));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
         Assert.Equal(input1, output1);
         Assert.Equal(input2, output2);
         Assert.Equal(input3, output3);
@@ -248,7 +245,7 @@ public class AwaitMultipleTests
     }
 
     [Fact]
-    public async Task Test09()
+    public async Task TestReturnsCorrectValues09()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -265,8 +262,8 @@ public class AwaitMultipleTests
             Delay100AndReturn(input9));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
         Assert.Equal(input1, output1);
         Assert.Equal(input2, output2);
         Assert.Equal(input3, output3);
@@ -279,7 +276,7 @@ public class AwaitMultipleTests
     }
 
     [Fact]
-    public async Task Test10()
+    public async Task TestReturnsCorrectValues10()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -297,8 +294,8 @@ public class AwaitMultipleTests
             Delay100AndReturn(input10));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
         Assert.Equal(input1, output1);
         Assert.Equal(input2, output2);
         Assert.Equal(input3, output3);
@@ -312,7 +309,7 @@ public class AwaitMultipleTests
     }
 
     [Fact]
-    public async Task Test11()
+    public async Task TestReturnsCorrectValues11()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -331,8 +328,8 @@ public class AwaitMultipleTests
             Delay100AndReturn(input11));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
         Assert.Equal(input1, output1);
         Assert.Equal(input2, output2);
         Assert.Equal(input3, output3);
@@ -347,7 +344,7 @@ public class AwaitMultipleTests
     }
 
     [Fact]
-    public async Task Test12()
+    public async Task TestReturnsCorrectValues12()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -367,8 +364,8 @@ public class AwaitMultipleTests
             Delay100AndReturn(input12));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
         Assert.Equal(input1, output1);
         Assert.Equal(input2, output2);
         Assert.Equal(input3, output3);
@@ -384,7 +381,7 @@ public class AwaitMultipleTests
     }
 
     [Fact]
-    public async Task Test13()
+    public async Task TestReturnsCorrectValues13()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -405,8 +402,8 @@ public class AwaitMultipleTests
             Delay100AndReturn(input13));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
         Assert.Equal(input1, output1);
         Assert.Equal(input2, output2);
         Assert.Equal(input3, output3);
@@ -423,7 +420,7 @@ public class AwaitMultipleTests
     }
 
     [Fact]
-    public async Task Test14()
+    public async Task TestReturnsCorrectValues14()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -445,8 +442,8 @@ public class AwaitMultipleTests
             Delay100AndReturn(input14));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
         Assert.Equal(input1, output1);
         Assert.Equal(input2, output2);
         Assert.Equal(input3, output3);
@@ -464,7 +461,7 @@ public class AwaitMultipleTests
     }
 
     [Fact]
-    public async Task Test15()
+    public async Task TestReturnsCorrectValues15()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -487,8 +484,8 @@ public class AwaitMultipleTests
             Delay100AndReturn(input15));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
         Assert.Equal(input1, output1);
         Assert.Equal(input2, output2);
         Assert.Equal(input3, output3);
@@ -507,7 +504,7 @@ public class AwaitMultipleTests
     }
 
     [Fact]
-    public async Task Test16()
+    public async Task TestReturnsCorrectValues16()
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -532,8 +529,8 @@ public class AwaitMultipleTests
             Delay100AndReturn(input16));
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
+
         Assert.Equal(input1, output1);
         Assert.Equal(input2, output2);
         Assert.Equal(input3, output3);
@@ -552,8 +549,10 @@ public class AwaitMultipleTests
         Assert.Equal(input16, output16);
     }
 
-    [Fact]
-    public async Task TestExceptionHandlingSingleError()
+    [Theory]
+    [InlineData(ExceptionOption.Default)]
+    [InlineData(ExceptionOption.Aggregate)]
+    public async Task TestExceptionHandlingSingleError(ExceptionOption exceptionOption)
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -563,7 +562,8 @@ public class AwaitMultipleTests
         {
             var (output1, output2) = await Tasks(
                 Delay100AndReturn("uninteresting"),
-                FailingTaskAfterMilliseconds(2));
+                FailingTaskAfterMilliseconds(2),
+                exceptionOption: exceptionOption);
         }
         catch (Exception ex)
         {
@@ -571,19 +571,28 @@ public class AwaitMultipleTests
         }
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
 
         Assert.NotNull(exception);
-        Assert.Equal("One or more errors occurred. (Hi there from the 2ms task.)", exception.Message);
+        if (exceptionOption is ExceptionOption.Aggregate)
+        {
+            Assert.Equal("One or more errors occurred. (Hi there from the 2ms task.)", exception.Message);
 
-        var aggregateException = Assert.IsType<AggregateException>(exception);
-        var message = aggregateException.InnerExceptions.Select(x => x.Message).Single();
-        Assert.Equal("Hi there from the 2ms task.", message);
+            var aggregateException = Assert.IsType<AggregateException>(exception);
+            var message = aggregateException.InnerExceptions.Select(x => x.Message).Single();
+            Assert.Equal("Hi there from the 2ms task.", message);
+        }
+        else
+        {
+            Assert.IsNotType<AggregateException>(exception);
+            Assert.Equal("Hi there from the 2ms task.", exception.Message);
+        }
     }
 
-    [Fact]
-    public async Task TestExceptionHandlingMultipleErrors()
+    [Theory]
+    [InlineData(ExceptionOption.Default)]
+    [InlineData(ExceptionOption.Aggregate)]
+    public async Task TestExceptionHandlingMultipleErrors(ExceptionOption exceptionOption)
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -594,7 +603,8 @@ public class AwaitMultipleTests
             var (output1, output2, output3) = await Tasks(
                 FailingTaskAfterMilliseconds(80),
                 FailingTaskAfterMilliseconds(2),
-                FailingTaskAfterMilliseconds(105));
+                FailingTaskAfterMilliseconds(105),
+                exceptionOption: exceptionOption);
         }
         catch (Exception ex)
         {
@@ -602,21 +612,32 @@ public class AwaitMultipleTests
         }
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < _expectedTotalTime);
 
         Assert.NotNull(exception);
-        Assert.Equal("""One or more errors occurred. (Hi there from the 2ms task.) (Hi there from the 80ms task.) (Hi there from the 105ms task.)""", exception.Message);
+        if (exceptionOption is ExceptionOption.Aggregate)
+        {
+            Assert.Equal("""One or more errors occurred. (Hi there from the 2ms task.) (Hi there from the 80ms task.) (Hi there from the 105ms task.)""", exception.Message);
 
-        var aggregateException = Assert.IsType<AggregateException>(exception);
-        var messages = aggregateException.InnerExceptions.Select(x => x.Message);
-        Assert.Contains("Hi there from the 2ms task.", messages);
-        Assert.Contains("Hi there from the 80ms task.", messages);
-        Assert.Contains("Hi there from the 105ms task.", messages);
+            var aggregateException = Assert.IsType<AggregateException>(exception);
+            var messages = aggregateException.InnerExceptions.Select(x => x.Message);
+            Assert.Contains("Hi there from the 2ms task.", messages);
+            Assert.Contains("Hi there from the 80ms task.", messages);
+            Assert.Contains("Hi there from the 105ms task.", messages);
+        }
+        else
+        {
+            Assert.IsNotType<AggregateException>(exception);
+            Assert.Equal("Hi there from the 2ms task.", exception.Message);
+        }
     }
 
-    [Fact]
-    public async Task TestCancelledExceptionHandling2()
+    [Theory]
+    [InlineData(ExceptionOption.Default, 10)]
+    [InlineData(ExceptionOption.Aggregate, 10)]
+    [InlineData(ExceptionOption.Default, 150)]
+    [InlineData(ExceptionOption.Aggregate, 150)]
+    public async Task TestCancelledExceptionHandling(ExceptionOption exceptionOption, int cancelAfterMilliseconds)
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -626,7 +647,8 @@ public class AwaitMultipleTests
         {
             var (output1, output2) = await Tasks(
                 Delay100AndReturn("uninteresting"),
-                CancelAfterMilliseconds(150));
+                CancelAfterMilliseconds(cancelAfterMilliseconds),
+                exceptionOption: exceptionOption);
         }
         catch (Exception ex)
         {
@@ -634,45 +656,27 @@ public class AwaitMultipleTests
         }
 
         stopWatch.Stop();
-
         Assert.True(stopWatch.ElapsedMilliseconds < 190);
 
         Assert.NotNull(exception);
-        Assert.Equal("A task was canceled.", exception.Message);
-        Assert.IsType<TaskCanceledException>(exception);
-    }
-
-    [Fact]
-    public async Task TestCancelledExceptionHandling1()
-    {
-        var stopWatch = new Stopwatch();
-        stopWatch.Start();
-
-        Exception? exception = null;
-        try
+        if (exceptionOption is ExceptionOption.Aggregate)
         {
-            var (output1, output2) = await Tasks(
-                Delay100AndReturn("uninteresting"),
-                CancelAfterMilliseconds(10));
+            Assert.Equal("One or more errors occurred. (A task was canceled.)", exception.Message);
+            var aggregateException = Assert.IsType<AggregateException>(exception);
+            var innerException = Assert.Single(aggregateException.InnerExceptions);
+            Assert.Equal("A task was canceled.", innerException.Message);
         }
-        catch (Exception ex)
+        else
         {
-            exception = ex;
+            Assert.Equal("A task was canceled.", exception.Message);
+            Assert.IsType<TaskCanceledException>(exception);
         }
-
-        stopWatch.Stop();
-
-        Assert.True(stopWatch.ElapsedMilliseconds < 190);
-
-        Assert.NotNull(exception);
-        Assert.Equal("A task was canceled.", exception.Message);
-        Assert.IsType<TaskCanceledException>(exception);
     }
 
     [Theory]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited00(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions00(int numberOfTasksWithoutReturnValue)
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
@@ -680,7 +684,8 @@ public class AwaitMultipleTests
         try
         {
             await Tasks(
-                Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue));
+                Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+                ExceptionOption.Aggregate);
         }
         catch (AggregateException ex)
         {
@@ -702,11 +707,12 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited01(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions01(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(1, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(1, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -714,12 +720,13 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited02(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions02(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(2, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(2, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -727,13 +734,14 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited03(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions03(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(3, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(3, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -741,14 +749,15 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited04(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions04(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(4, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(4, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
             ThrowWithTaskNumber(4),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -756,15 +765,16 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited05(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions05(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(5, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(5, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
             ThrowWithTaskNumber(4),
             ThrowWithTaskNumber(5),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -772,16 +782,17 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited06(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions06(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(6, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(6, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
             ThrowWithTaskNumber(4),
             ThrowWithTaskNumber(5),
             ThrowWithTaskNumber(6),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -789,9 +800,9 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited07(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions07(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(7, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(7, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
@@ -799,7 +810,8 @@ public class AwaitMultipleTests
             ThrowWithTaskNumber(5),
             ThrowWithTaskNumber(6),
             ThrowWithTaskNumber(7),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -807,9 +819,9 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited08(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions08(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(8, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(8, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
@@ -818,7 +830,8 @@ public class AwaitMultipleTests
             ThrowWithTaskNumber(6),
             ThrowWithTaskNumber(7),
             ThrowWithTaskNumber(8),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -826,9 +839,9 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited09(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions09(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(9, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(9, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
@@ -838,7 +851,8 @@ public class AwaitMultipleTests
             ThrowWithTaskNumber(7),
             ThrowWithTaskNumber(8),
             ThrowWithTaskNumber(9),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -846,9 +860,9 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited10(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions10(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(10, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(10, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
@@ -859,7 +873,8 @@ public class AwaitMultipleTests
             ThrowWithTaskNumber(8),
             ThrowWithTaskNumber(9),
             ThrowWithTaskNumber(10),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -867,9 +882,9 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited11(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions11(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(11, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(11, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
@@ -881,7 +896,8 @@ public class AwaitMultipleTests
             ThrowWithTaskNumber(9),
             ThrowWithTaskNumber(10),
             ThrowWithTaskNumber(11),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -889,9 +905,9 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited12(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions12(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(12, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(12, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
@@ -904,7 +920,8 @@ public class AwaitMultipleTests
             ThrowWithTaskNumber(10),
             ThrowWithTaskNumber(11),
             ThrowWithTaskNumber(12),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -912,9 +929,9 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited13(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions13(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(13, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(13, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
@@ -928,7 +945,8 @@ public class AwaitMultipleTests
             ThrowWithTaskNumber(11),
             ThrowWithTaskNumber(12),
             ThrowWithTaskNumber(13),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -936,9 +954,9 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited14(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions14(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(14, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(14, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
@@ -953,7 +971,8 @@ public class AwaitMultipleTests
             ThrowWithTaskNumber(12),
             ThrowWithTaskNumber(13),
             ThrowWithTaskNumber(14),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -961,9 +980,9 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited15(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions15(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(15, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(15, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
@@ -979,7 +998,8 @@ public class AwaitMultipleTests
             ThrowWithTaskNumber(13),
             ThrowWithTaskNumber(14),
             ThrowWithTaskNumber(15),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
@@ -987,9 +1007,9 @@ public class AwaitMultipleTests
     [InlineData(0)]
     [InlineData(1)]
     [InlineData(2)]
-    public static async Task TestAllAreAwaited16(int numberOfTasksWithoutReturnValue)
+    public static async Task TestCanAggregateExceptions16(int numberOfTasksWithoutReturnValue)
     {
-        await TestAllAreAwaited(16, numberOfTasksWithoutReturnValue, () => Tasks(
+        await TestCanAggregateExceptions(16, numberOfTasksWithoutReturnValue, () => Tasks(
             ThrowWithTaskNumber(1),
             ThrowWithTaskNumber(2),
             ThrowWithTaskNumber(3),
@@ -1006,11 +1026,12 @@ public class AwaitMultipleTests
             ThrowWithTaskNumber(14),
             ThrowWithTaskNumber(15),
             ThrowWithTaskNumber(16),
-            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue))
+            Enumerable.Range(1, numberOfTasksWithoutReturnValue).Select(ThrowWithTaskNumberWithoutReturnValue),
+            ExceptionOption.Aggregate)
         );
     }
 
-    private static async Task TestAllAreAwaited(int withReturnValue, int withoutReturnValue, Func<Task> act)
+    private static async Task TestCanAggregateExceptions(int withReturnValue, int withoutReturnValue, Func<Task> act)
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();

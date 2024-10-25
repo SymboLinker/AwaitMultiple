@@ -28,7 +28,8 @@ var employees = await dbConnection.GetAllAsync<Employee>();
 ```
 because the latter code is not executing the employees-related task until the books-related task has finished.
 
-## Additional option
+
+## Optional feature
 Await tasks with and without return value together:
 ```cs
 var (books, employees) = await Tasks(
@@ -56,11 +57,19 @@ await Tasks([
 ]);
 ```
 
-## Exception handling
 
-In case of a cancellation, a `TaskCanceledException` is thrown.
+## Exception handling options
 
-Otherwise, all errors are returned in a single `AggregateException`. Its `Message` property is like:
+By default, only the first occurring exception is thrown (and the others are caught but not re-thrown). This is consistent with `Task.WhenAll` and more parts of the C# language.
+
+You can change this behavior by setting the `exceptionOption` like this:
+```cs
+var (books, employees) = await Tasks(
+   dbConnection.GetAllAsync<Books>(),
+   dbConnection.GetAllAsync<Employees>(),
+   exceptionOption: ExceptionOption.Aggregate);
+```
+Then all errors are returned in a single `AggregateException`. Its `Message` property is like:
 
 > One or more errors occurred. (First exception message.) (Second exception message.)
 
