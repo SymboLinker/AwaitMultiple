@@ -14,7 +14,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return task1.Result;
     }
 
@@ -24,7 +25,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result);
     }
 
@@ -34,7 +36,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result);
     }
 
@@ -44,7 +47,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3, task4], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3, task4], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result, task4.Result);
     }
 
@@ -54,7 +58,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result);
     }
 
@@ -64,7 +69,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result);
     }
 
@@ -74,7 +80,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result, task7.Result);
     }
 
@@ -84,7 +91,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result, task7.Result, task8.Result);
     }
 
@@ -94,7 +102,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result, task7.Result, task8.Result, task9.Result);
 
     }
@@ -105,7 +114,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result, task7.Result, task8.Result, task9.Result, task10.Result);
     }
 
@@ -115,7 +125,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result, task7.Result, task8.Result, task9.Result, task10.Result, task11.Result);
     }
 
@@ -125,7 +136,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11, task12], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11, task12], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result, task7.Result, task8.Result, task9.Result, task10.Result, task11.Result, task12.Result);
     }
 
@@ -135,7 +147,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11, task12, task13], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11, task12, task13], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result, task7.Result, task8.Result, task9.Result, task10.Result, task11.Result, task12.Result, task13.Result);
     }
 
@@ -145,7 +158,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11, task12, task13, task14], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11, task12, task13, task14], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result, task7.Result, task8.Result, task9.Result, task10.Result, task11.Result, task12.Result, task13.Result, task14.Result);
     }
 
@@ -155,7 +169,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11, task12, task13, task14, task15], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11, task12, task13, task14, task15], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result, task7.Result, task8.Result, task9.Result, task10.Result, task11.Result, task12.Result, task13.Result, task14.Result, task15.Result);
     }
 
@@ -165,7 +180,8 @@ public static class Await
         ExceptionOption exceptionOption = ExceptionOption.Default,
         bool continueOnCapturedContext = true)
     {
-        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11, task12, task13, task14, task15, task16], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption);
+        await AwaitWithExceptionHandling([task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11, task12, task13, task14, task15, task16], tasksWithoutReturnValue, continueOnCapturedContext, exceptionOption)
+            .ConfigureAwait(continueOnCapturedContext);
         return (task1.Result, task2.Result, task3.Result, task4.Result, task5.Result, task6.Result, task7.Result, task8.Result, task9.Result, task10.Result, task11.Result, task12.Result, task13.Result, task14.Result, task15.Result, task16.Result);
     }
 

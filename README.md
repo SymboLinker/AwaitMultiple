@@ -83,7 +83,8 @@ Optionally, you can configure the await:
 var (books, employees) = await Tasks(
    dbConnection.GetAllAsync<Books>(),
    dbConnection.GetAllAsync<Employees>(),
-   continueOnCapturedContext: false);
+   continueOnCapturedContext: false)
+   .ConfigureAwait(false);
 ```
 
 
