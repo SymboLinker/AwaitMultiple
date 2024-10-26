@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<Version>4.0.1</Version>
+		<Version>5.0.0</Version>
 		<Description>Await multiple tasks in parallel and get their return values with concise code.</Description>
 		<PackageProjectUrl>https://github.com/Symbolinker/AwaitMultiple#readme</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Symbolinker/AwaitMultiple#readme</RepositoryUrl>
@@ -24,6 +24,7 @@
 			v3.0.0: add optional parameter `continueOnCapturedContext` (with default `true`).
 			v4.0.0: change the default exception handling behaviour to "throwing only the first exception" (as is usual in the C# language) and introduce the optional `exceptionOption` parameter that can be set to `ExceptionOption.Aggregate' for always getting an `AggregateException` if any task throws.
 			v4.0.1: add `.ConfigureAwait(continueOnCapturedContext)` at missed spots + update readme.
+			v5.0.0: delete the `continueOnCapturedContext` parameter and always use `false` inside the library.
 		</PackageReleaseNotes>
 	</PropertyGroup>
 

@@ -1,3 +1,5 @@
+[![NuGet](https://img.shields.io/nuget/vpre/AwaitMultiple.svg)](https://www.nuget.org/packages/AwaitMultiple)
+
 # AwaitMultiple
 
 Await multiple tasks in parallel and get their return values with concise code.
@@ -30,7 +32,7 @@ because the latter code is not executing the employees-related task until the bo
 
 
 ## Optional feature
-Await tasks with and without return value together:
+Await tasks with and without return value in a single call:
 ```cs
 var (books, employees) = await Tasks(
    dbConnection.GetAllAsync<Books>(),
@@ -49,7 +51,7 @@ var books = await Tasks(
       // ... any number of tasks...
    ]);
 ```
-or even (for code consistency):
+For code consistency, you can also use:
 ```cs
 await Tasks([
    dbConnection.InsertHistoryRecordAsync(),
@@ -60,7 +62,8 @@ await Tasks([
 
 ## Exception handling options
 
-By default, only the first occurring exception is thrown (and the others are caught but not re-thrown). This is consistent with `Task.WhenAll` and more parts of the C# language.
+By default, only the first occurring exception is thrown (and the others are caught but not re-thrown).
+This is consistent with `Task.WhenAll` and more parts of the C# language.
 
 You can change this behavior by setting the `exceptionOption` like this:
 ```cs
@@ -76,16 +79,27 @@ Then all errors are returned in a single `AggregateException`. Its `Message` pro
 Use the property `aggregateException.InnerExceptions` for more details like `StackTrace`s etc.
 
 
-## Configuring the await
+## Configuring awaits
 
-Optionally, you can configure the await:
+**This section is for nerds only. Using `ConfigureAwait` is NOT necessary.**
+
+AwaitMultiple uses `.ConfigureAwait(false)` internally. Programmers using AwaitMultiple in their own library can use `.ConfigureAwait(false)`:
 ```cs
 var (books, employees) = await Tasks(
    dbConnection.GetAllAsync<Books>(),
-   dbConnection.GetAllAsync<Employees>(),
-   continueOnCapturedContext: false)
+   dbConnection.GetAllAsync<Employees>())
    .ConfigureAwait(false);
 ```
+
+More details:
+- The above is slightly better for performance. Normally, after having `await`ed an async operation, the "context" is set to the same as before the `await`. That costs time. In most libraries there is no need to capture and return to a specific context, so in those library one might want to set `continueOnCapturedContext` to `false`.
+- Library writers using the above also avoid some deadlock problems for consumers that use their library wrongly.
+- In app-level code you will probably not see `.ConfigureAwait(false)` being used. The performance gain is very small.
+- One must not use `.ConfigureAwait(false)` in a method body that interacts with UI. It is fine to never use it at all.
+- Writing `await task.ConfigureAwait(true);` is functionally identical to `await task;`, so you never need to use `.ConfigureAwait(true)`.
+
+**Conclusion for consumers of this library**:
+You don't need to use `ConfigureAwait` at all unless you're writing your own library code and want extra performance.
 
 
 ## Get it
