@@ -92,7 +92,7 @@ var (books, employees) = await Tasks(
 ```
 
 More details:
-- The above is slightly better for performance. Normally, after having `await`ed an async operation, the "context" is set to the same as before the `await`. That costs time. In most libraries there is no need to capture and return to a specific context, so in those library one might want to set `continueOnCapturedContext` to `false`.
+- The above is slightly better for performance. Normally, after having `await`ed an async operation, the "context" is set to the same as before the `await`. That costs time. In most libraries there is no need to capture and return to a specific context, so one might want to set `continueOnCapturedContext` to `false` in those libraries.
 - Library writers using the above also avoid some deadlock problems for consumers that use their library wrongly.
 - In app-level code you will probably not see `.ConfigureAwait(false)` being used. The performance gain is very small.
 - One must not use `.ConfigureAwait(false)` in a method body that interacts with UI. It is fine to never use it at all.
