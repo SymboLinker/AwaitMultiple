@@ -673,6 +673,48 @@ public class AwaitMultipleTests
         }
     }
 
+    [Fact]
+    public async Task TestAwaitingIsStoppedAtCancellation()
+    {
+        var cancellationToken = new CancellationToken(canceled: true);
+
+        var stopWatch = new Stopwatch();
+        stopWatch.Start();
+
+        try
+        {
+            var (output1, output2, output3) = await Tasks(
+                Task.Run(() => DelayReturn(delayMilliseconds: 700, 1)),
+                Task.Run(() => WaitEndlesslyForInt(2, cancellationToken)),
+                Task.Run(() => DelayReturn(delayMilliseconds: 700, 3)),
+                exceptionOption: ExceptionOption.Aggregate);
+        }
+        catch (Exception ex)
+        {
+            stopWatch.Stop();
+            Assert.True(stopWatch.ElapsedMilliseconds < 150);
+
+            var aggregateException = Assert.IsType<AggregateException>(ex);
+            var taskCanceledException = Assert.IsType<TaskCanceledException>(Assert.Single(aggregateException.InnerExceptions));
+            Assert.Equal("A task was canceled.", taskCanceledException.Message);
+            return;
+        }
+
+        Assert.Fail();
+
+        static async Task<int> DelayReturn(int delayMilliseconds, int i)
+        {
+            await Task.Delay(100);
+            return i;
+        }
+
+        static async Task<int> WaitEndlesslyForInt(int i, CancellationToken cancellationToken)
+        {
+            await Task.Delay(-1, cancellationToken);
+            return i;
+        }
+    }
+
     [Theory]
     [InlineData(1)]
     [InlineData(2)]

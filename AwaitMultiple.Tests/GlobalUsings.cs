@@ -1,1 +1,1 @@
-﻿global using static AwaitMultiple.Await;
+﻿global using static AwaitMultiple.__Await;

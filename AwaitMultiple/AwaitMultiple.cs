@@ -1,6 +1,6 @@
 ﻿namespace AwaitMultiple;
 
-public static class Await
+public static class __Await
 {
     public static Task Tasks(
         IEnumerable<Task> tasksWithoutReturnValue,

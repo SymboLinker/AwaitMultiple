@@ -14,7 +14,7 @@ var (value1, value2, value3) = await Tasks(task1, task2, task3);
 
 Add:
 ```cs
-global using static AwaitMultiple.Await;
+global using static AwaitMultiple.__Await;
 ```
 
 Write
@@ -65,11 +65,34 @@ await Tasks([
 By default, only the first occurring exception is thrown (and the others are caught but not re-thrown).
 This is consistent with `Task.WhenAll` and more parts of the C# language.
 
-You can change this behavior by setting the `exceptionOption` like this:
+### Continue if one task fails
+You may want to continue if "getting value `b`" fails. In that case, you could use the NuGet package [TaskExceptionCatcher](https://github.com/Symbolinker/TaskExceptionCatcher#readme) like this:
 ```cs
-var (books, employees) = await Tasks(
-   dbConnection.GetAllAsync<Books>(),
-   dbConnection.GetAllAsync<Employees>(),
+var (a, catchResultB, c) = await Tasks(
+   StartTaskAAsync(),
+   Catcher.Run(() => StartTaskBAsync()),
+   StartTaskCAsync());
+if (catchResultB.Exception is { } exception)
+{
+   // no problem!
+}
+else
+{
+   var b = catchResultB.Value;
+   // use `b`.
+}
+
+// use `a` and `c`.
+```
+
+### Getting all the exceptions
+If you're interested in not only the first, but all the exceptions:
+- set the `exceptionOption` to `ExceptionOption.Aggregate`
+- use `Task.Run` on all arguments, all tasks.
+```cs
+var (a, b) = await Tasks(
+   Task.Run(() => StartTaskAAsync()),
+   Task.Run(() => StartTaskBAsync()),
    exceptionOption: ExceptionOption.Aggregate);
 ```
 Then all errors are returned in a single `AggregateException`. Its `Message` property is like:
@@ -77,6 +100,9 @@ Then all errors are returned in a single `AggregateException`. Its `Message` pro
 > One or more errors occurred. (First exception message.) (Second exception message.)
 
 Use the property `aggregateException.InnerExceptions` for more details like `StackTrace`s etc.
+
+Why is `Task.Run` needed? Because `async` functions don't return a task until the first `await` keyword.
+If an exception occurs before that, then that function throws even before it passes an argument into `Tasks`.
 
 
 ## Configuring awaits
